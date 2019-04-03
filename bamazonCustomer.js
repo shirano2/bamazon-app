@@ -75,11 +75,12 @@ function ask() {
                 connection.query("UPDATE products SET ? WHERE ?",
                     [
                       {
-                        stock_quantity: res[0].stock_quantity-parseInt(ans.quantity)
+                        stock_quantity: res[0].stock_quantity-parseInt(ans.quantity),
+                        product_sales:res[0].product_sales+parseFloat(ans.quantity)*res[0].price
                       },
                       {
                         item_id: ans.item_id
-                      }
+                      },
                     ],
                     function(err, res) {
                       console.log(chalk.blue("\r\nYour purchase is success!!\r\n"));
