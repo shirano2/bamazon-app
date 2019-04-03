@@ -1,5 +1,7 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
+var cTable = require("console.table");
+var chalk = require("chalk");
 //var Table = require("cli-table");
 
 var connection = mysql.createConnection({
@@ -17,11 +19,14 @@ connection.connect(function(err){
 });
 
 function displayItems(func) {
+ 
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
+    var arr=[];
     for(var i=0; i<res.length;i++) {
-        console.log("%s %s %d %s %f %d",res[i].item_id,res[i].product_name,res[i].product_sales,res[i].department_name,res[i].price,res[i].stock_quantity);
+      arr.push({item_id:res[i].item_id, product_name:res[i].product_name, product_sales:res[i].product_sales, department_name:res[i].department_name,price:res[i].price,stock_quantity:res[i].stock_quantity})
     }
+    console.table(arr);
     func();
   })
 }
@@ -61,11 +66,11 @@ function ask() {
         connection.query("SELECT * FROM products WHERE ?",{item_id:ans.item_id}, function (err, res) {
             if (err) throw err;
             if(res.length==0) {
-                console.log("That item is not on our list!")
-                displayItems();
+                console.log(chalk.red("\r\nThat item is not on our list!\r\n"));
+                displayItems(ask);
             } else if(res[0].stock_quantity<ans.quantity) {
-                console.log("Insufficient quantity!")
-                displayItems();
+                console.log(chalk.red("\r\nInsufficient quantity!\r\n"));
+                displayItems(ask);
             } else {
                 connection.query("UPDATE products SET ? WHERE ?",
                     [
@@ -77,8 +82,8 @@ function ask() {
                       }
                     ],
                     function(err, res) {
-                      console.log(res.affectedRows + " products updated!\n");
-                      displayItems();
+                      console.log(chalk.blue("\r\nYour purchase is success!!\r\n"));
+                      displayItems(ask);
                     }
                 );
             }

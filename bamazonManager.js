@@ -1,5 +1,7 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
+var cTable = require('console.table');
+var chalk = require("chalk");
 //var Table = require("cli-table");
 
 var connection = mysql.createConnection({
@@ -43,9 +45,11 @@ function list() {
 function displayItems(func) {
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
+    var arr=[];
     for(var i=0; i<res.length;i++) {
-        console.log("%s %s %d %s %f %d",res[i].item_id,res[i].product_name,res[i].product_sales,res[i].department_name,res[i].price,res[i].stock_quantity);
+      arr.push({item_id:res[i].item_id, product_name:res[i].product_name, product_sales:res[i].product_sales, department_name:res[i].department_name,price:res[i].price,stock_quantity:res[i].stock_quantity})
     }
+    console.table(arr);
     func();
   })
 }
@@ -53,11 +57,13 @@ function displayItems(func) {
 function lowInventory(){
     connection.query("SELECT * FROM products", function (err, res) { 
         if (err) throw err;
+        var arr=[];
         for(var i=0; i<res.length;i++) {
             if(res[i].stock_quantity<=5) {
-                console.log("%s %s %d %s %f %d",res[i].item_id,res[i].product_name,res[i].product_sales,res[i].department_name,res[i].price,res[i].stock_quantity);
+                arr.push({item_id:res[i].item_id, product_name:res[i].product_name, product_sales:res[i].product_sales, department_name:res[i].department_name,price:res[i].price,stock_quantity:res[i].stock_quantity});
             }
         }
+        console.table(arr);
         list();
     })
 }
@@ -91,7 +97,7 @@ function addInventory(){
         connection.query("SELECT * FROM products WHERE ?",{item_id:ans.item_id}, function (err, res) {
             if (err) throw err;
             if(res.length==0) {
-                console.log("That item is not on our list!")
+                console.log(chalk.red("\r\nThat item is not on our list!\r\n"));
                 list();
             } else {
                 var name = res[0].product_name;
@@ -105,7 +111,7 @@ function addInventory(){
                     }
                     ],
                     function(err, res) {
-                        console.log("Successfully added "+ans.quantity+" "+name);
+                        console.log(chalk.blue("\r\nSuccessfully added "+ans.quantity+" "+name+"\r\n"));
                         list();
                     }
                 );
@@ -167,7 +173,7 @@ function addNew(){
         .then(function(ans) {
             connection.query("INSERT INTO products SET ?",ans,function (err, res) {
                 if (err) throw err;
-                console.log(ans.product_name+" added to Bamazon");
+                console.log(chalk.blue("\r\n"+ans.product_name+" added to Bamazon\r\n"));
                 list();
             })
         })
