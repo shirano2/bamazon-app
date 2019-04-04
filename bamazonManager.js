@@ -2,7 +2,6 @@ var inquirer = require("inquirer");
 var mysql = require("mysql");
 var cTable = require('console.table');
 var chalk = require("chalk");
-//var Table = require("cli-table");
 
 var connection = mysql.createConnection({
   host     : "localhost",
@@ -55,13 +54,11 @@ function displayItems(func) {
 }
 
 function lowInventory(){
-    connection.query("SELECT * FROM products", function (err, res) { 
+    connection.query("SELECT * FROM products WHERE stock_quantity<=?",[5], function (err, res) { 
         if (err) throw err;
         var arr=[];
         for(var i=0; i<res.length;i++) {
-            if(res[i].stock_quantity<=5) {
-                arr.push({item_id:res[i].item_id, product_name:res[i].product_name, product_sales:res[i].product_sales, department_name:res[i].department_name,price:res[i].price,stock_quantity:res[i].stock_quantity});
-            }
+            arr.push({item_id:res[i].item_id, product_name:res[i].product_name, product_sales:res[i].product_sales, department_name:res[i].department_name,price:res[i].price,stock_quantity:res[i].stock_quantity});
         }
         console.table(arr);
         list();
@@ -85,7 +82,7 @@ function addInventory(){
             name: "quantity",
             message: "How many would you like to add?",
             validate: function(value) {
-                if (isNaN(value) === false) {
+                if (isNaN(value) === false && parseInt(value)>0) {
                     return true;
                 } else {
                     return false;
@@ -122,12 +119,10 @@ function addInventory(){
 
 function addNew(){
     var arr = [];
-    connection.query("SELECT department_name FROM products",function (err, res) {
+    connection.query("SELECT department_name FROM departments",function (err, res) {
         if (err) throw err;
         for(var i=0;i<res.length;i++) {
-            if(arr.indexOf(res[i].department_name)<0) {
-                arr.push(res[i].department_name);
-            }
+            arr.push(res[i].department_name);
         }
         inquirer.prompt([
             {

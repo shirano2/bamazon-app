@@ -2,7 +2,6 @@ var inquirer = require("inquirer");
 var mysql = require("mysql");
 var cTable = require("console.table");
 var chalk = require("chalk");
-//var Table = require("cli-table");
 
 var connection = mysql.createConnection({
   host     : "localhost",
@@ -19,7 +18,6 @@ connection.connect(function(err){
 });
 
 function displayItems(func) {
- 
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
     var arr=[];
