@@ -67,10 +67,12 @@ bamazon can take following commands:
     * Add to Inventory
 
     You can add more items to the stocks
+
     ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager3.jpg)
 
     * Add New Product
     You can add new items to the stocks
+
     ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager4.jpg)
 
 
@@ -81,12 +83,15 @@ bamazon can take following commands:
     * View Product Sales by Department
 
     You can check the total profit
+
     ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor1.jpg)
 
     * Create New Department
 
     You can add new department
+
     ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor2.jpg)
 
     After making it, you can add some items about new department with `node bamazonManager.js`
+    
     ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor3.jpg)
