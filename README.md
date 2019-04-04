@@ -60,14 +60,14 @@ bamazon can take following commands:
 
     * View Low Inventory
 
-    If stock_quantity is less than 5, show the table.
+    If stock_quantity is less than 5, show the item.
+    
     ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager2.jpg)
 
     * Add to Inventory
 
     You can add more items to the stocks
     ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager3.jpg)
-
 
     * Add New Product
     You can add new items to the stocks
