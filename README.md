@@ -46,6 +46,7 @@ bamazon can take following commands:
 ![Image of concert](https://shirano2.github.io/bamazon-app/images/customer1.jpg)
 
 * Then stock_quantity is reduced and product_sales is increased. Product_sales is stored which is the price of the product multiplied by the total number of the quantity purchased
+
 ![Image of concert](https://shirano2.github.io/bamazon-app/images/customer2.jpg)
 
 
