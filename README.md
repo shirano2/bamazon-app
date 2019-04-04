@@ -43,11 +43,11 @@ bamazon can take following commands:
 1. `node bamazonCustomer.js`
 * You can choose an item, then buy it
 
-![Image of concert](https://shirano2.github.io/bamazon-app/images/customer1.jpg)
+![Image of Customer](https://shirano2.github.io/bamazon-app/images/customer1.jpg)
 
 * Then stock_quantity is reduced and product_sales is increased. Product_sales is stored which is the price of the product multiplied by the total number of the quantity purchased
 
-![Image of concert](https://shirano2.github.io/bamazon-app/images/customer2.jpg)
+![Image of Customer](https://shirano2.github.io/bamazon-app/images/customer2.jpg)
 
 
 
@@ -56,22 +56,22 @@ bamazon can take following commands:
 
     * View Products for Sale
 
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager1.jpg)
+    ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager1.jpg)
 
     * View Low Inventory
 
     If stock_quantity is less than 5, show the item.
     
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager2.jpg)
+    ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager2.jpg)
 
     * Add to Inventory
 
     You can add more items to the stocks
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager3.jpg)
+    ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager3.jpg)
 
     * Add New Product
     You can add new items to the stocks
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/manager4.jpg)
+    ![Image of Manager](https://shirano2.github.io/bamazon-app/images/manager4.jpg)
 
 
 
@@ -81,12 +81,12 @@ bamazon can take following commands:
     * View Product Sales by Department
 
     You can check the total profit
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/supervisor1.jpg)
+    ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor1.jpg)
 
     * Create New Department
 
     You can add new department
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/supervisor2.jpg)
+    ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor2.jpg)
 
     After making it, you can add some items about new department with `node bamazonManager.js`
-    ![Image of spotify](https://shirano2.github.io/bamazon-app/images/supervisor3.jpg)
+    ![Image of Supervisor](https://shirano2.github.io/bamazon-app/images/supervisor3.jpg)
