@@ -12,7 +12,7 @@ CREATE TABLE products(
   PRIMARY KEY (item_id)
 );
 
-INSERT INTO products (product_name, product_sales, department_name, price, stock_quantity) 
+INSERT INTO products(product_name, product_sales, department_name, price, stock_quantity) 
 values 
 ('spider-man', 0, "movie", 49.95, 150),
 ('deadpool', 0, "movie", 19.95, 50),
@@ -26,9 +26,17 @@ values
 ('monopoly',0,"card-game", 14.00, 50);
 
 CREATE TABLE departments(
-  department_id INTEGER NOT NULL,
+  department_id INT AUTO_INCREMENT,
   department_name VARCHAR(40) NOT NULL,
-  over_head_costs INTEGER(50) NOT NULL
+  over_head_costs INTEGER(50) NOT NULL,
+  PRIMARY KEY (department_id)
 );
 
-SELECT * FROM products;
+INSERT INTO departments(department_name, over_head_costs) 
+values 
+('movie', 200),
+('game', 100),
+('necessities', 10),
+('food', 50),
+('apparel', 30),
+('card-game',5);
